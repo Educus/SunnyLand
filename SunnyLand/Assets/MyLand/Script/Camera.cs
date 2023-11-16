@@ -1,18 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Camera : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] Transform target;
+    [SerializeField] Vector3 offset;
+    [SerializeField] float moveSpeed;
 
-    // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
-        
+        Vector3 destination= target.position + offset;
+        transform.position = Vector3.Lerp(transform.position, destination, moveSpeed * Time.deltaTime);
     }
 }
