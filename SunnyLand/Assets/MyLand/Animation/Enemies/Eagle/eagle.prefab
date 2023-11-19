@@ -172,6 +172,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 8087966745891104212}
+  rigid: {fileID: 0}
+  jumpPower: 14
 --- !u!1 &8087966745891104212
 GameObject:
   m_ObjectHideFlags: 0
