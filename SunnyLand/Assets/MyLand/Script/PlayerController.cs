@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour
         void GroundCheck()
         {
             int layer = 136;
-            isGrounded = Physics2D.OverlapBox(transform.position, new Vector2(0.9f, 0.05f),0, layer);
+            isGrounded = Physics2D.OverlapBox(transform.position, new Vector2(0.85f, 0.05f),0, layer);
             
             if (isGrounded) anim.SetBool("IsGrounded", true);
             else anim.SetBool("IsGrounded", false);
@@ -66,6 +66,6 @@ public class PlayerController : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.black;
-        Gizmos.DrawWireCube(transform.position, new Vector2(0.9f,0.05f));
+        Gizmos.DrawWireCube(transform.position, new Vector2(0.85f,0.05f));
     }
 }
