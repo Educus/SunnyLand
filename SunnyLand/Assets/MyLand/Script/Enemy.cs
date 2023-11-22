@@ -8,7 +8,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] Transform target;
     [SerializeField] float moveSpeed;
     [SerializeField] bool walk;
-    [SerializeField] float cycle;
+    [SerializeField] int cycle;
     [SerializeField] bool jump;
     [SerializeField] float jumpPower;
     [SerializeField] bool fly;
@@ -19,6 +19,7 @@ public class Enemy : MonoBehaviour
     Vector3 originPosition;
     bool isReverse;
     int index;
+    int delayTime;
 
     Vector3 destination => originPosition + position[index];
 
@@ -30,6 +31,11 @@ public class Enemy : MonoBehaviour
         originPosition = transform.position;
         index = 0;
         isReverse = false;
+
+        if (jump == true)
+        {
+            StartCoroutine(enemyJump());
+        }
     }
     private void Update()
     {
@@ -54,7 +60,7 @@ public class Enemy : MonoBehaviour
             Debug.Log(isReverse);
             if (jump == true)
             {
-            
+                // StartCoroutine(enemyJump());
             }
             else if(walk == true)
             {
@@ -92,6 +98,16 @@ public class Enemy : MonoBehaviour
             Vector3 end = pivot + position[i + 1];
             Gizmos.DrawLine(start, end);
         }
+    }
+    
+    IEnumerator enemyJump()
+    {
+        rigid.AddForce(new Vector2((isReverse ? -1 : 1),1) * jumpPower, ForceMode2D.Impulse);
+        Debug.Log("?");
+        delayTime = Random.Range(0, cycle);
+        yield return new WaitForSeconds(3.0f);
+        Debug.Log("??");
+
     }
     
 }
