@@ -7,8 +7,16 @@ public class DeadTrigger : MonoBehaviour
 {
     [SerializeField] GameObject target;
     [SerializeField] Rigidbody2D rigid;
+    [SerializeField] float lender;
     [SerializeField] int jumpPower;
-    
+
+    private void Update()
+    {
+        if ((transform.position.y - target.transform.position.y) != lender)
+        {
+            transform.position = new Vector2(target.transform.position.x, target.transform.position.y + lender);
+        }
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.CompareTag("Player"))
