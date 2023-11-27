@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public void OnGameClear()
     {
-
+        
     }
 
     public void OnGameOver()

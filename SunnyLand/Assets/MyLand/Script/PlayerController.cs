@@ -82,6 +82,11 @@ public class PlayerController : MonoBehaviour
         anim.SetTrigger("Hurt");
 
         OnDeadPlayer.Invoke();
-
+    }
+    public void OnClear()
+    {
+        rigid.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+        playing = false;
+        anim.SetTrigger("Clear");
     }
 }
