@@ -304,9 +304,8 @@ MonoBehaviour:
   walk: 0
   cycle: 0
   position:
-  - {x: 2, y: 2, z: 0}
+  - {x: 0, y: 3, z: 0}
   - {x: 0, y: 0, z: 0}
-  - {x: 0, y: -3, z: 0}
   spritePivot: 0
 --- !u!70 &3312363057889036856
 CapsuleCollider2D:

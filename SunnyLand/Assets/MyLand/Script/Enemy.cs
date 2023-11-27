@@ -36,6 +36,8 @@ public class Enemy : MonoBehaviour
         spr = GetComponent<SpriteRenderer>();
         rigid = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        target = GameObject.FindGameObjectWithTag("Player").transform;
+
 
         originPosition = transform.position;
         index = 0;
@@ -179,5 +181,14 @@ public class Enemy : MonoBehaviour
             yield return null;
         }
     }
-    
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.collider.tag == "Player")
+        {
+            PlayerController player = collision.collider.GetComponent<PlayerController>();
+            player.OnDead();
+        }
+    }
+
 }

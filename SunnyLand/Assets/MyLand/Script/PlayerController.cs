@@ -3,17 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] float MoveSpeed;
     [SerializeField] float jumpPower;
+    [SerializeField] UnityEvent OnDeadPlayer;
 
     Rigidbody2D rigid;
     SpriteRenderer spritRender;
     Animator anim;
     Collider2D col;
     bool isGrounded;
+    bool playing = true; 
 
     private void Start()
     {
@@ -24,9 +27,12 @@ public class PlayerController : MonoBehaviour
     }
     void Update()
     {
-        Move();
-        Jump();
-        GroundCheck();
+        if(playing)
+        { 
+            Move();
+            Jump();
+            GroundCheck();
+        }
         
         void Move()
         {
@@ -67,5 +73,15 @@ public class PlayerController : MonoBehaviour
     {
         Gizmos.color = Color.black;
         Gizmos.DrawWireCube(transform.position, new Vector2(0.85f,0.05f));
+    }
+
+    public void OnDead()
+    {
+        rigid.constraints = RigidbodyConstraints2D.FreezeAll;
+        playing = false;
+        anim.SetTrigger("Hurt");
+
+        OnDeadPlayer.Invoke();
+
     }
 }
