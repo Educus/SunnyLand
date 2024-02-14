@@ -18,7 +18,7 @@ MonoBehaviour:
   m_TilingRules:
   - m_Id: 0
     m_Sprites:
-    - {fileID: 21300094, guid: 153378ce6afe5da48bd80a43788e03c8, type: 3}
+    - {fileID: 21300048, guid: 153378ce6afe5da48bd80a43788e03c8, type: 3}
     - {fileID: 21300048, guid: 153378ce6afe5da48bd80a43788e03c8, type: 3}
     - {fileID: 21300048, guid: 153378ce6afe5da48bd80a43788e03c8, type: 3}
     - {fileID: 21300092, guid: 153378ce6afe5da48bd80a43788e03c8, type: 3}
@@ -30,7 +30,7 @@ MonoBehaviour:
     m_GameObject: {fileID: 0}
     m_MinAnimationSpeed: 1
     m_MaxAnimationSpeed: 1
-    m_PerlinScale: 0.5042
+    m_PerlinScale: 0.25
     m_Output: 1
     m_ColliderType: 0
     m_RandomTransform: 0
