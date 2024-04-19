@@ -8,7 +8,6 @@ using static UnityEditor.Experimental.GraphView.GraphView;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] Transform target;
-    [SerializeField] bool checkRight;   // 이미지 방향이 오른쪽이면 체크
     [SerializeField] float moveSpeed;
     [SerializeField] bool fly;
     [SerializeField] bool jump;
@@ -93,9 +92,8 @@ public class Enemy : MonoBehaviour
        
         void filp(Vector2 nextTarget)
         {
-            float nextPosition = nextTarget.x - transform.position.x;
-            if (checkRight == false && nextPosition <= 0 || checkRight == true && nextPosition >= 0) spr.flipX = false;
-            else if (checkRight == false && nextPosition >= 0 || checkRight == true && nextPosition <= 0) spr.flipX = true;
+            if ((nextTarget.x - transform.position.x) < 0) spr.flipX = false;
+            else if ((nextTarget.x - transform.position.x) > 0) spr.flipX = true;
         }
     }
 
@@ -131,11 +129,6 @@ public class Enemy : MonoBehaviour
             {
                 index += (isReverse ? -1 : 1);
                 if (index == (isReverse ? 0 : position.Length - 1)) isReverse = !isReverse;
-            }
-            if(walk == true && cycle == 0)
-            {
-                moveCheck = true;
-                isGrounded = true;
             }
             yield return null;
         }
