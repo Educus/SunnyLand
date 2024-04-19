@@ -5,11 +5,12 @@ using UnityEngine;
 public class MovingPlatform : MonoBehaviour
 {
     Rigidbody2D rigid;
+
     void Start()
     {
         rigid = GetComponent<Rigidbody2D>();
     }
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnCollisionStay2D(Collision2D collision)
     {
         if(collision.gameObject.CompareTag("Player"))
         {
@@ -20,7 +21,7 @@ public class MovingPlatform : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Player"))
         {
-            rigid.constraints = RigidbodyConstraints2D.FreezeAll;
+            rigid.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
         }
     }
 }
