@@ -6,12 +6,11 @@ using UnityEngine.Events;
 
 public class CrankTrigger : MonoBehaviour
 {
-    // [SerializeField] UnityEvent CrankEvent;
+    [SerializeField] UnityEvent CrankEvent;
     [SerializeField] Transform BridgeMain;
     [SerializeField] Transform bridge;
 
     Animator anim;
-    
     private void Start()
     {
         anim = GetComponent<Animator>();
@@ -19,38 +18,20 @@ public class CrankTrigger : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.tag == "Player")
+        if(anim.GetBool("TouchCrank") == false)
         {
-            if (anim.GetBool("TouchCrank") == false)
-            {
-                StartCoroutine(RotationBridge());
-            }
-            anim.SetBool("TouchCrank", true);
+            StartCoroutine(RotationBridge());
         }
+        anim.SetBool("TouchCrank", true);
+        
     }
     
     IEnumerator RotationBridge()
     {
-        Vector3 rotVec;
-        int rot;
-        
-        if (bridge.rotation.z < 0)
-        {
-            rotVec = Vector3.forward * 90;
-            rot = -4;
-            Debug.Log("-90");
-
-        }
-        else
-        {
-            rotVec = Vector3.forward * -90;
-            rot = 4;
-            Debug.Log("90");
-
-        }
+        Vector3 rotVec = Vector3.forward * 90;
         bridge.position = BridgeMain.position;
         bridge.Rotate(rotVec);
-        bridge.Translate(bridge.right * rot, Space.World);
+        bridge.Translate(bridge.right * -4, Space.World);
 
         yield return null;
     }
