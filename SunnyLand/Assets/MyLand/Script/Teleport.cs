@@ -6,7 +6,7 @@ using UnityEngine;
 public class Teleport : MonoBehaviour
 {
     [SerializeField] Transform toObj;
-
+    /*
     private void OnTriggerStay2D(Collider2D collision)
     {
         if(collision.CompareTag("Player") && Input.GetKey(KeyCode.UpArrow))
@@ -15,4 +15,5 @@ public class Teleport : MonoBehaviour
         }
         
     }
+    */
 }

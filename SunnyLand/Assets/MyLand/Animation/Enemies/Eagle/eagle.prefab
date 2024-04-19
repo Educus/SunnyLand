@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5180761764519231310}
   - component: {fileID: 1586140153428225251}
   - component: {fileID: 8577275021516912561}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Static Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -188,9 +188,9 @@ GameObject:
   - component: {fileID: 3448822677008179543}
   - component: {fileID: 585702123817691999}
   - component: {fileID: 3312363057889036856}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: eagle
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -209,7 +209,7 @@ Transform:
   m_Children:
   - {fileID: 2293251943198077497}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4087663751214802944
 SpriteRenderer:

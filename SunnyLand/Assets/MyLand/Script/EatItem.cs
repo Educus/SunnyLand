@@ -9,6 +9,23 @@ public class EatItem : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            switch(type)
+            {
+                case 1:
+                    UITMP.cherryCount++;
+                    UITMP.Instance.ChangeCount();
+                    break;
+                case 2:
+                    UITMP.gemCount++;
+                    UITMP.Instance.ChangeCount();
+
+                    break;
+
+                default:
+                    break;
+
+            }
+
             Destroy(gameObject);
         }
     }
