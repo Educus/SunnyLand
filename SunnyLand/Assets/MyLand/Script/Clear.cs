@@ -11,6 +11,7 @@ public class Clear : MonoBehaviour
     {
         if (collision.CompareTag("Player") && Input.GetKey(KeyCode.UpArrow))
         {
+            PlayerController.playing = false;
             ClearPlayer.Invoke();
         }
 

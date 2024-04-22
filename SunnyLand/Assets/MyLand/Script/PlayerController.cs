@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     Animator anim;
     Collider2D col;
     bool isGrounded;
-    bool playing = true; 
+    static public bool playing = true; 
 
     private void Start()
     {
