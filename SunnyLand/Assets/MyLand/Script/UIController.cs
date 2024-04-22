@@ -6,7 +6,7 @@ using UnityEngine.Events;
 
 public class UIController : Singleton<UIController>
 {
-    [SerializeField] GameObject MainMenu;
+    [SerializeField] GameObject SubMenu;
     [SerializeField] GameObject BackGround;
     [SerializeField] GameObject GameOver;
     [SerializeField] GameObject Clear;
@@ -17,6 +17,8 @@ public class UIController : Singleton<UIController>
 
     bool checkClick = false;
     bool clearStage = false;
+    bool subBool = false;
+
     TMP_Text clearText;
 
     private void Start()
@@ -34,8 +36,16 @@ public class UIController : Singleton<UIController>
 
             StartCoroutine(ILoading());
         }
+        else if (GameManager.stageLevel != 0 && Input.GetKeyUp(KeyCode.Escape))
+        {
+            UISubMenu();
+        }
     }
 
+    public void UISubMenu(bool subBool)
+    {
+        SubMenu.SetActive(subBool);
+    }
     public void UIGameOver()
     {
         StartCoroutine(IGameOver());
@@ -51,6 +61,11 @@ public class UIController : Singleton<UIController>
     public void UIAllClear()
     {
         StartCoroutine(IAllClear());
+    }
+    public void UISubMenu()
+    {
+        subBool = !subBool;
+        UIController.Instance.UISubMenu(subBool);
     }
 
 

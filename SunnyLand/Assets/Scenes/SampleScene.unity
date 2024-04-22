@@ -1302,7 +1302,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8470a80003ec86d4cb5035e18ba82f45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MainMenu: {fileID: 409038594}
+  SubMenu: {fileID: 0}
   BackGround: {fileID: 215009336}
   GameOver: {fileID: 1440055669}
   Clear: {fileID: 1707567822}
@@ -2900,7 +2900,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 374978297}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: OnNextStage
+        m_MethodName: OnReLoadSence
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2910,6 +2910,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnEnd:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &445130033
 GameObject:
   m_ObjectHideFlags: 0
@@ -5412,7 +5415,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 409038596}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: OnEndButton
+        m_MethodName: OnEndB
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -54161,7 +54164,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 409038596}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: OnSettiongButton
+        m_MethodName: OnSettiongB
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -55977,7 +55980,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 409038596}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: OnStartButton
+        m_MethodName: OnStartB
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -57503,7 +57506,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 409038596}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: OnMapButton
+        m_MethodName: OnMapB
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -58384,7 +58387,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 409038596}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: OnLoadButton
+        m_MethodName: OnLoadB
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

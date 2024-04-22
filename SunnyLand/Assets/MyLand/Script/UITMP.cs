@@ -64,4 +64,13 @@ public class UITMP : Singleton<UITMP>
         gemCount = saveCount[0];
         cherryCount = saveCount[1];
     }
+
+    public void FormatTMP()
+    {
+        mainStage = 0;
+        stage = 0;
+        life = 1;
+        gemCount = 0;
+        cherryCount = 0;
+    }
 }
