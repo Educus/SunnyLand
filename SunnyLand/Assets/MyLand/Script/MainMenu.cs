@@ -17,7 +17,10 @@ public class MainMenu : MonoBehaviour
 
     public void OnStartB()
     {
-        UITMP.Instance.FormatTMP();
+        if(UITMP.gemCount != 0 & UITMP.cherryCount != 0 & UITMP.life != 0)
+        {
+            UITMP.Instance.FormatTMP();
+        }
         GameManager.stageLevel += 1;
         OnStart.Invoke();
     }

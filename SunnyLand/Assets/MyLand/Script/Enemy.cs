@@ -20,11 +20,13 @@ public class Enemy : MonoBehaviour
 
     SpriteRenderer spr;
     Rigidbody2D rigid;
+    Collider2D col;
     Vector3 originPosition;
     bool isReverse;
     bool moveCheck;
     bool moveTrue;
     bool isGrounded;
+    bool isLive = true;
     int index;
     int delayTime;
 
@@ -37,6 +39,7 @@ public class Enemy : MonoBehaviour
         spr = GetComponent<SpriteRenderer>();
         rigid = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        col = GetComponent<Collider2D>();
         target = GameObject.FindGameObjectWithTag("Player").transform;
 
 
@@ -59,6 +62,9 @@ public class Enemy : MonoBehaviour
     }
     private void Update()
     {
+        if (!isLive)
+            return;
+
         if (fly == true) // 날기
         {
             // 플레이어 위치마다 방향 전환
@@ -122,9 +128,24 @@ public class Enemy : MonoBehaviour
 
     }
     
+    public void OnDeathTrigger()
+    {
+        isLive = false;
+        col.enabled = false;
+        if(fly != true)
+            rigid.simulated = false;
+
+        anim?.SetTrigger("deathEffect");
+    }
+
+    void OnDead()
+    {
+        Destroy(gameObject);
+    }
+
     IEnumerator enemyNotCycle()
     {
-        while (true)
+        while (isLive)
         {
             transform.position = Vector3.MoveTowards(transform.position, destination, moveSpeed * Time.deltaTime);
             if (transform.position == destination)
@@ -143,7 +164,7 @@ public class Enemy : MonoBehaviour
 
     IEnumerator enemyJump()
     {
-        while (true)
+        while (isLive)
         {
             moveCheck = true;
             yield return new WaitWhile(() => moveTrue == true);
@@ -163,7 +184,7 @@ public class Enemy : MonoBehaviour
         float count = 0;
         bool walking = true;
         
-        while(true)
+        while(isLive)
         {
             count += Time.deltaTime;
             if (count >= delayTime)

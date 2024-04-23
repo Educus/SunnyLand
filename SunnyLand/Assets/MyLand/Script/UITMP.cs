@@ -67,7 +67,6 @@ public class UITMP : Singleton<UITMP>
 
     public void FormatTMP()
     {
-        mainStage = 0;
         stage = 0;
         life = 1;
         gemCount = 0;
