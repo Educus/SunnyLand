@@ -19,7 +19,7 @@ public class UITMP : Singleton<UITMP>
 
     int maxStage = GameManager.stageMaxLevel;
     int stage = GameManager.stageLevel;
-    int mainStage = (GameManager.stageLevel - 1) / 3 + 1;
+    int mainStage = (GameManager.stageLevel - 2) / 3 + 1;
 
     void Start()
     {
@@ -36,7 +36,7 @@ public class UITMP : Singleton<UITMP>
     
     public void ChangeCount()
     {
-        mainStage = (GameManager.stageLevel - 1) / 3 + 1;
+        mainStage = (GameManager.stageLevel - 2) / 3 + 1;
         stage = GameManager.stageLevel;
 
         if (stage == 0) { }

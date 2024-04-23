@@ -103,7 +103,7 @@ public class UIController : Singleton<UIController>
     }
     IEnumerator IClear()
     {
-        int stageMain = (GameManager.stageLevel - 1) / 3 + 1;
+        int stageMain = (GameManager.stageLevel - 2) / 3 + 1;
         int stage = GameManager.stageLevel;
         int maxStage = GameManager.stageMaxLevel;
 
