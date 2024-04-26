@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.Rendering;
-using UnityEditor.SceneManagement;
 
 public class UITMP : Singleton<UITMP>
 {
