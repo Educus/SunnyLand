@@ -36,7 +36,7 @@ public class UIController : Singleton<UIController>
 
             StartCoroutine(ILoading());
         }
-        else if (GameManager.stageLevel != 0 && Input.GetKeyUp(KeyCode.Escape))
+        else if (GameManager.stageNowLevel != 0 && Input.GetKeyUp(KeyCode.Escape))
         {
             UISubMenu();
         }
@@ -103,8 +103,13 @@ public class UIController : Singleton<UIController>
     }
     IEnumerator IClear()
     {
-        int stageMain = (GameManager.stageLevel - 2) / 3 + 1;
-        int stage = GameManager.stageLevel;
+        // int[] stageMenu = GameManager.Instance.OnStageUpdate();
+        // int stageMain = (stageMenu[1] - 2) / 3 + 1;
+        // int stage = stageMenu[1];
+        // int maxStage = stageMenu[0];
+
+        int stageMain = (GameManager.stageNowLevel - 2) / 3 + 1;
+        int stage = GameManager.stageNowLevel;
         int maxStage = GameManager.stageMaxLevel;
 
         if (stage == 0) { }

@@ -16,9 +16,9 @@ public class UITMP : Singleton<UITMP>
     public static int cherryCount = 0;
     public static int[] saveCount = { 0, 0 };
 
-    int maxStage = GameManager.stageMaxLevel;
-    int stage = GameManager.stageLevel;
-    int mainStage = (GameManager.stageLevel - 2) / 3 + 1;
+    int maxStage;
+    int stage;
+    int mainStage;
 
     void Start()
     {
@@ -31,12 +31,16 @@ public class UITMP : Singleton<UITMP>
         Life.text = "X" + life.ToString();
         GemCount.text = "X" + gemCount.ToString();
         CherryCount.text = "X" + cherryCount.ToString();
+
+        maxStage = GameManager.stageNowLevel;
+        stage = GameManager.stageNowLevel;
+        mainStage = (GameManager.stageNowLevel - 2) / 3 + 1;
     }
     
     public void ChangeCount()
     {
-        mainStage = (GameManager.stageLevel - 2) / 3 + 1;
-        stage = GameManager.stageLevel;
+        mainStage = (GameManager.stageNowLevel - 2) / 3 + 1;
+        stage = GameManager.stageNowLevel;
 
         if (stage == 0) { }
         else if (stage == 1)

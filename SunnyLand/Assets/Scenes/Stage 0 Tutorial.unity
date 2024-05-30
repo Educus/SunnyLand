@@ -1968,7 +1968,6 @@ GameObject:
   - component: {fileID: 555478353}
   - component: {fileID: 555478354}
   - component: {fileID: 555478355}
-  - component: {fileID: 555478356}
   - component: {fileID: 555478357}
   m_Layer: 6
   m_Name: house
@@ -2089,19 +2088,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.43, y: 2.07}
   m_EdgeRadius: 0
---- !u!114 &555478356
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 555478352}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 352893ddacf9cb347a5a6c2b0d7ad585, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  toObj: {fileID: 610347979}
 --- !u!114 &555478357
 MonoBehaviour:
   m_ObjectHideFlags: 0

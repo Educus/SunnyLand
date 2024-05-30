@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
 
     public GameObject player;
@@ -13,23 +13,41 @@ public class GameManager : MonoBehaviour
     Quaternion StartingRot;
     bool isStarted = false;
 
-    public static int stageMaxLevel = 4;
-    public static int stageLevel = 0;
+    static public int stageMaxLevel = 0;
+    static public int stageNowLevel = 0;
+    static public int stageMoveLevel = 0;
+
 
     private void Start()
     {
-        if(stageLevel != SceneManager.GetActiveScene().buildIndex)
+        stageMaxLevel = SceneManager.sceneCountInBuildSettings - 1;
+        stageNowLevel = 0;
+
+        if (stageNowLevel != SceneManager.GetActiveScene().buildIndex)
             OnReLoadSence();
     }
+
+    public int[] OnStageRead()
+    {
+        stageNowLevel = SceneManager.sceneCount;
+        int[] stage = { stageMaxLevel, stageNowLevel };
+
+        return stage;
+    }
+    public void OnStageWrite(int stageNextL)
+    {
+        stageMoveLevel = stageNextL;
+    }
+
 
     public void OnGameClear()
     {
         UITMP.Instance.SaveTmp();
-        if (stageLevel >= stageMaxLevel)
+        if (stageNowLevel >= stageMaxLevel)
         {
             UIController.Instance.UIAllClear();
         }
-        else if(stageLevel < stageMaxLevel)
+        else if(stageNowLevel < stageMaxLevel)
         { 
             UIController.Instance.UIClear();
         }
@@ -37,7 +55,7 @@ public class GameManager : MonoBehaviour
 
     public void OnNextStage()
     {
-        stageLevel++;
+        stageNowLevel++;
         PlayerController.playing = true;
         OnReLoadSence();
     }
@@ -66,6 +84,15 @@ public class GameManager : MonoBehaviour
     public void OnReLoadSence()
     {
         PlayerController.playing = true;
-        SceneManager.LoadScene(stageLevel, LoadSceneMode.Single);
+        SceneManager.LoadScene(stageNowLevel, LoadSceneMode.Single);
     }
+
+    public void OnMovingStage(int stage)
+    {
+        stageNowLevel = stage + 1;
+        PlayerController.playing = true;
+        OnReLoadSence();
+    }
+
+   
 }

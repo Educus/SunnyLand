@@ -8,20 +8,17 @@ using UnityEngine.UI;
 public class MainMenu : MonoBehaviour
 {
     [SerializeField] UnityEvent OnStart;
-    [SerializeField] UnityEvent OnEnd;
 
     public int _gemCount = 0;
+    // public int[] _gemCount = new int[GameManager.stageMaxLevel];
     public int _cherryCount = 0;
     public int _life = 0;
     public int _stageLevel = 0;
 
     public void OnStartB()
     {
-        if(UITMP.gemCount != 0 & UITMP.cherryCount != 0 & UITMP.life != 0)
-        {
-            UITMP.Instance.FormatTMP();
-        }
-        GameManager.stageLevel += 1;
+        UITMP.Instance.FormatTMP();
+        GameManager.stageNowLevel += 1;
         OnStart.Invoke();
     }
     public void OnLoadB()
@@ -33,17 +30,13 @@ public class MainMenu : MonoBehaviour
 
         DownLoadUI();
     }
-    public void OnMapB()
-    {
-        Debug.Log("MapB");
-    }
     public void OnSettiongB()
     {
         Debug.Log("SettiongB");
     }
     public void OnEndB()
     {
-        Debug.Log("EndB");
+        Debug.Log("Quit");
         Application.Quit();
     }
 
@@ -68,7 +61,7 @@ public class MainMenu : MonoBehaviour
     }
     public void OnExitB()
     {
-        GameManager.stageLevel = 0;
+        GameManager.stageNowLevel = 0;
         OnStart.Invoke();
     }
 
@@ -77,7 +70,7 @@ public class MainMenu : MonoBehaviour
         UITMP.saveCount[0] = _gemCount;
         UITMP.saveCount[1] = _cherryCount;
        UITMP.life = _life;
-       GameManager.stageLevel = _stageLevel;
+       GameManager.stageNowLevel = _stageLevel;
 
         OnReStartB();
     }
@@ -86,7 +79,7 @@ public class MainMenu : MonoBehaviour
         _gemCount = UITMP.saveCount[0];
         _cherryCount = UITMP.saveCount[1];
         _life = UITMP.life;
-        _stageLevel = GameManager.stageLevel;
+        _stageLevel = GameManager.stageNowLevel;
 
     }
 
