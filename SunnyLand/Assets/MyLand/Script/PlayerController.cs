@@ -82,6 +82,13 @@ public class PlayerController : MonoBehaviour
         anim.SetTrigger("Hurt");
 
         OnDeadPlayer.Invoke();
+        Invoke(nameof(OnHealing), 1.2f);
+    }
+    public void OnHealing()
+    {
+        anim.SetTrigger("Healing");
+        rigid.constraints = RigidbodyConstraints2D.FreezeRotation;
+
     }
     public void OnClear()
     {

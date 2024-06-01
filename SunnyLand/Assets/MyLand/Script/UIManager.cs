@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class UIController : Singleton<UIController>
+public class UIManager : Singleton<UIManager>
 {
     [SerializeField] GameObject SubMenu;
     [SerializeField] GameObject BackGround;
@@ -12,11 +12,8 @@ public class UIController : Singleton<UIController>
     [SerializeField] GameObject Clear;
     [SerializeField] GameObject TouchScreen;
     [SerializeField] GameObject Loading;
-    [SerializeField] UnityEvent OnDeadPlayer;
-    [SerializeField] UnityEvent OnNextStage;
 
     bool checkClick = false;
-    bool clearStage = false;
     bool subBool = false;
 
     TMP_Text clearText;
@@ -29,12 +26,13 @@ public class UIController : Singleton<UIController>
     private void Update()
     {
         if (checkClick == true && Input.GetMouseButtonDown(0))
-        {
+        {   // 완전 사망시, 클리어시 클릭표시가 뜨고 난 뒤 클릭했을 때
             GameOver.SetActive(false);
             Clear.SetActive(false);
             TouchScreen.SetActive(false);
 
-            StartCoroutine(ILoading());
+            UILoading();
+            GameManager.Instance.OnMoveStageSelect(1.3f);
         }
         else if (GameManager.stageNowLevel != 0 && Input.GetKeyUp(KeyCode.Escape))
         {
@@ -42,10 +40,6 @@ public class UIController : Singleton<UIController>
         }
     }
 
-    public void UISubMenu(bool subBool)
-    {
-        SubMenu.SetActive(subBool);
-    }
     public void UIGameOver()
     {
         StartCoroutine(IGameOver());
@@ -58,14 +52,14 @@ public class UIController : Singleton<UIController>
     {
          StartCoroutine(IClear());
     }
-    public void UIAllClear()
-    {
-        StartCoroutine(IAllClear());
-    }
     public void UISubMenu()
     {
         subBool = !subBool;
-        UIController.Instance.UISubMenu(subBool);
+        UIManager.Instance.UISubMenu(subBool);
+    }
+    public void UISubMenu(bool subBool)
+    {
+        SubMenu.SetActive(subBool);
     }
 
 
@@ -74,7 +68,7 @@ public class UIController : Singleton<UIController>
         BackGround.SetActive(true);
         GameOver.SetActive(true);
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.5f);
 
         TouchScreen.SetActive(true);
         checkClick = true;
@@ -84,42 +78,22 @@ public class UIController : Singleton<UIController>
         BackGround.SetActive(true);
         Loading.SetActive(true);
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.5f);
 
-
-        if (clearStage)
-        {
-            clearStage = false;
-            OnNextStage.Invoke();
-        }
-        else
-        {
-            UITMP.Instance.ResetTMP();
-            OnDeadPlayer.Invoke();
-        }
-
-        // BackGround.SetActive(false);
-        // Loading.SetActive(false);
+        BackGround.SetActive(false);
+        Loading.SetActive(false);
     }
     IEnumerator IClear()
     {
-        // int[] stageMenu = GameManager.Instance.OnStageUpdate();
-        // int stageMain = (stageMenu[1] - 2) / 3 + 1;
-        // int stage = stageMenu[1];
-        // int maxStage = stageMenu[0];
-
         int stageMain = (GameManager.stageNowLevel - 2) / 3 + 1;
         int stage = GameManager.stageNowLevel;
         int maxStage = GameManager.stageMaxLevel;
 
         if (stage == 0) { }
-        if (stage == 1)
+        else if (stage == maxStage) { }
+        else if (stage == 1)
         {
             clearText.text = "Stage Tutorial" + "\nClear!";
-        }
-        else if (stage == maxStage)
-        {
-            clearText.text = "Stage All" + "\nClear!";
         }
         else
         {
@@ -128,17 +102,9 @@ public class UIController : Singleton<UIController>
         BackGround.SetActive(true);
         Clear.SetActive(true);
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.5f);
 
         TouchScreen.SetActive(true);
-        clearStage = true;
         checkClick = true;
-    }
-    IEnumerator IAllClear()
-    {
-        BackGround.SetActive(true);
-        Clear.SetActive(true);
-
-        yield return null;
     }
 }

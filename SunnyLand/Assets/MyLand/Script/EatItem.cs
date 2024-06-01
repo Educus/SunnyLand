@@ -17,12 +17,12 @@ public class EatItem : MonoBehaviour
             switch(type)
             {
                 case 1:
-                    ScoreManager.Instance.cherry[nowStage]++;
-                    UITMP.Instance.ChangeCount();
+                    ScoreManager.Instance.cherry++;
+                    StatusManager.Instance.ChangeCount();
                     break;
                 case 2:
-                    ScoreManager.Instance.gem[nowStage]++;
-                    UITMP.Instance.ChangeCount();
+                    ScoreManager.Instance.gem++;
+                    StatusManager.Instance.ChangeCount();
 
                     break;
 

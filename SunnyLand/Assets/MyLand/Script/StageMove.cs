@@ -7,8 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class StageMove : MonoBehaviour
 {
-    [SerializeField] UnityEvent MovingStage;
     public TMP_Text tmpText;
+    public int round;
 
     // 0 = 튜토리얼, 1 ~ = 스테이지 1 ~
 
@@ -16,11 +16,9 @@ public class StageMove : MonoBehaviour
     {
         if(Input.GetKey(KeyCode.UpArrow))
         {
-            // MovingStage.Invoke();
-            Debug.Log("inbuild");
-            Debug.Log(SceneManager.sceneCountInBuildSettings);
-            Debug.Log("count");
-            Debug.Log(SceneManager.sceneCount);
+            GameManager.stageMoveLevel = round;
+            ScoreManager.Instance.ScoreReset();
+            GameManager.Instance.OnMoveStage();
 
         }
 

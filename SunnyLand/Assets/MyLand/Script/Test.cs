@@ -2,23 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Test : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private void Update()
     {
-        // StartCoroutine(isTest());
-        
-    }
 
-    IEnumerator isTest()
-    {
-        while(true)
+        if(Input.GetKeyDown(KeyCode.Q))
         {
-            Debug.Log("?");
-            yield return new WaitForSeconds(1.0f);
-            Debug.Log("??");
+            ScoreManager.Instance.ScoreUpLoad();
+        }
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            ScoreManager.Instance.ScoreDownLoad();
+        }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
         }
 
     }
