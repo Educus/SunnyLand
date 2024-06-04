@@ -15,7 +15,7 @@ public class StatusManager : Singleton<StatusManager>
     int stage;
     int mainStage;
 
-    void Start()
+    public void FirstStart()
     {
         ChangeCount();
 

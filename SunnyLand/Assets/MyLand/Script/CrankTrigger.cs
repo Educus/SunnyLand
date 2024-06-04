@@ -38,15 +38,11 @@ public class CrankTrigger : MonoBehaviour
         {
             rotVec = Vector3.forward * 90;
             rot = -4;
-            Debug.Log("-90");
-
         }
         else
         {
             rotVec = Vector3.forward * -90;
             rot = 4;
-            Debug.Log("90");
-
         }
         bridge.position = BridgeMain.position;
         bridge.Rotate(rotVec);

@@ -45,7 +45,17 @@ public class MainMenu : MonoBehaviour
     {
         GameManager.stageMoveLevel = 
             GameManager.stageNowLevel == GameManager.stageMaxLevel ? 0 : GameManager.stageMaxLevel;
-        OnStart.Invoke();
+        
+        if (GameManager.stageMoveLevel == 0)
+        {
+            OnStart.Invoke();
+            return;
+        }
+
+        UIManager.Instance.UILoading();
+        Invoke(nameof(InvokeOnStart), 1.5f);
 
     }
+    private void InvokeOnStart()
+    { OnStart.Invoke(); }
 }

@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 
 public class ScoreManager : Singleton<ScoreManager>
 {
-    private int[,] score;
+    private int[,] score;   // score[nowstage, num] => num( 0 = gem, 1 = cherry )
 
     int maxStage;
     int nowStage;
@@ -17,6 +18,10 @@ public class ScoreManager : Singleton<ScoreManager>
     public int life = 1;
 
     private void Start()
+    {
+        Invoke(nameof(ScoreDownLoad) , 0f);
+    }
+    public void FirstStart()
     {
         maxStage = GameManager.Instance.OnStageRead()[0];
         nowStage = GameManager.Instance.OnStageRead()[1];
@@ -31,11 +36,12 @@ public class ScoreManager : Singleton<ScoreManager>
 
     public void ScoreUpdate()
     {
-        if (score[nowStage, 0] <= gem & score[nowStage,1] <= cherry)
-        {
-            score[nowStage,0] = gem;
-            score[nowStage,1] = cherry;
-        }
+        if (score[nowStage, 0] <= gem)
+            score[nowStage, 0] = gem;
+        if (score[nowStage, 1] <= cherry)
+            score[nowStage, 1] = cherry;
+
+        ScoreUpLoad();
     }
 
     public void ScoreReset()
@@ -53,6 +59,7 @@ public class ScoreManager : Singleton<ScoreManager>
                 score[i,j] = 0;
             }
         }
+        ScoreUpLoad();
     }
 
     public void ScoreUpLoad()

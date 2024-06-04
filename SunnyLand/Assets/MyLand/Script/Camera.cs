@@ -9,9 +9,19 @@ public class Camera : MonoBehaviour
     [SerializeField] Vector3 offset;
     [SerializeField] float moveSpeed;
 
+    Vector3 selectVector = new Vector3 (0, 3, 0);
+
     void LateUpdate()
     {
-        Vector3 destination= target.position + offset;
-        transform.position = Vector3.Lerp(transform.position, destination, moveSpeed * Time.deltaTime);
+        if (GameManager.stageNowLevel == GameManager.stageMaxLevel)
+        {
+            Vector3 destination = target.position + offset + selectVector;
+            transform.position = Vector3.Lerp(transform.position, destination, moveSpeed * Time.deltaTime);
+        }
+        else
+        {
+            Vector3 destination = target.position + offset;
+            transform.position = Vector3.Lerp(transform.position, destination, moveSpeed * Time.deltaTime);
+        }
     }
 }

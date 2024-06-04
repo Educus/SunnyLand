@@ -21,10 +21,9 @@ public class GameManager : Singleton<GameManager>
 
         //if (stageNowLevel != SceneManager.GetActiveScene().buildIndex)
         //    OnReLoadSence();
-    }
-    private void Update()
-    {
-        Debug.Log(stageNowLevel);
+        StatusManager.Instance.ChangeCount();
+        ScoreManager.Instance.FirstStart();
+        StatusManager.Instance.FirstStart();
     }
 
     public void OnGameClear()   // 게임 클리어
@@ -40,7 +39,7 @@ public class GameManager : Singleton<GameManager>
 
     public int[] OnStageRead() // 현재의 스테이지 읽기 [0] 최대, [1] 현제
     {
-        stageNowLevel = SceneManager.sceneCount;
+        stageNowLevel = SceneManager.GetActiveScene().buildIndex;
         int[] stage = { stageMaxLevel, stageNowLevel };
 
         return stage;
@@ -58,9 +57,8 @@ public class GameManager : Singleton<GameManager>
         {
             UIManager.Instance.UILoading();
             ScoreManager.Instance.life -= 1;
-            PlayerController.playing = true;
             StatusManager.Instance.ChangeCount();
-            Invoke(nameof(PlayerPosReset), 1f);
+            Invoke(nameof(PlayerPosReset), 0.5f);
         }
         else
         {
@@ -71,6 +69,7 @@ public class GameManager : Singleton<GameManager>
     private void PlayerPosReset() // 사망시 생명이 남아 있을 경우 이동
     {
         player.transform.position = StartingPos;
+        
     }
 
     public void OnMoveStageSelect(float value)  // 일정시간 뒤 StageSelect로 이동
