@@ -14,36 +14,45 @@ public class SelectHouseScore : MonoBehaviour
 
     }
 
-    void HouseScore()
+    public void HouseScore()
     {
         for (int i = 0; i < total; i++)
         {
-            int cherry = ScoreManager.Instance.ScoreLoad(i, 1);
-            TMP_Text needCherry = transform.GetChild(i).gameObject.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject.GetComponent<TMP_Text>();
+            int cherry = ScoreManager.Instance.ScoreLoad(i + 1, 1);
+            GameObject scoreObj = transform.GetChild(i).gameObject.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject;
+            TMP_Text needCherry = scoreObj.GetComponent<TMP_Text>();
 
             needCherry.text = "Score " + cherry + " / 10";
+            // scoreObj.SetActive(false);
 
         }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        for (int i = 0; i < total; i++)
+        if (collision.tag == "Player")
         {
-            GameObject scoreObj = transform.GetChild(i).gameObject.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject;
-        
-            scoreObj.SetActive(true);
-        }
+            HouseScore();
 
+            for (int i = 0; i < total; i++)
+            {
+                GameObject scoreObj = transform.GetChild(i).gameObject.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject;
+
+                scoreObj.SetActive(true);
+            }
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        for (int i = 0; i < total; i++)
+        if (collision.tag == "Player")
         {
-            GameObject scoreObj = transform.GetChild(i).gameObject.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject;
-        
-            scoreObj.SetActive(false);
+            for (int i = 0; i < total; i++)
+            {
+                GameObject scoreObj = transform.GetChild(i).gameObject.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject;
+
+                scoreObj.SetActive(false);
+            }
         }
     }
 }

@@ -10,11 +10,14 @@ public class StageRock : MonoBehaviour
     private void Start()
     {
         total = transform.childCount;     // ¶ó¿îµåÀÇ ÃÑ °¹¼ö
-        Invoke(nameof(RockScore), 0f);
+        // Invoke(nameof(RockScore), 0f);
+        // StartCoroutine(RockScoreCheck());
     }
 
     void Update()
     {
+        RockScore();
+
         for (int i = 0; i < total; i++)
         {
             if (ScoreManager.Instance.ScoreLoad(i + 1, 0) >= 3)
@@ -22,8 +25,8 @@ public class StageRock : MonoBehaviour
                 transform.GetChild(i).gameObject.SetActive(false);
             }
         }
-        
     }
+
     void RockScore()
     {
         for (int i = 0; i < total; i++)
