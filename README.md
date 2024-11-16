@@ -33,5 +33,5 @@
 [![Video Label](http://img.youtube.com/vi/Ya_DWdn8JjM/0.jpg)](https://youtu.be/Ya_DWdn8JjM)
 
 ### 게임 다운로드
-
+https://drive.google.com/drive/folders/1un9GT_al2DdWpSz5Q28vmQGl-MAD83LX?usp=drive_link
 
