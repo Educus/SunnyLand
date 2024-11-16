@@ -28,7 +28,7 @@
 
 
 ### 플레이영상
-**Vidio : https://youtu.be/Ya_DWdn8JjM**
+**https://youtu.be/Ya_DWdn8JjM**
 
 [![Video Label](http://img.youtube.com/vi/Ya_DWdn8JjM/0.jpg)](https://youtu.be/Ya_DWdn8JjM)
 
