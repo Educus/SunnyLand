@@ -12,7 +12,7 @@
   
 + 간략한 설명
   
-    플랫폼 게임
+    적을 피하거나 밟아서 맵 곳곳에 퍼져있는 체리와 보석을 모으는 플랫폼 게임입니다
 
 ### 개발환경
 + Unity 2022.3.1f1
@@ -27,8 +27,8 @@
 
 
 
-### 플레이영상 
-
+### 플레이영상
+[![Video Label](http://img.youtube.com/vi/Ya_DWdn8JjM/0.jpg)](https://youtu.be/Ya_DWdn8JjM)
 
 
 ### 게임 다운로드
